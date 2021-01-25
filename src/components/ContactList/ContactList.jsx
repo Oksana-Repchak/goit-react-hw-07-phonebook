@@ -1,7 +1,6 @@
 import IconButton from '../IconButton';
-// import { connect } from 'react-redux';
 import { useSelector, useDispatch } from 'react-redux';
-import * as phonebookActions from '../../redux/phonebook-actions';
+import * as phonebookOperations from '../../redux/phonebook-operations';
 import { getVisibleContacts } from '../../redux/phonebook-selectors';
 import { ReactComponent as DeleteIcon } from '../../icons/delete.svg';
 
@@ -10,7 +9,7 @@ import s from './ContactList.module.css';
 export default function ContactList() {
   const contacts = useSelector(getVisibleContacts);
   const dispatch = useDispatch();
-  const onDeleteContact = id => dispatch(phonebookActions.deleteContact(id));
+  const onDeleteContact = id => dispatch(phonebookOperations.deleteContact(id));
 
   return (
     <ul className={s.list}>
@@ -30,21 +29,3 @@ export default function ContactList() {
     </ul>
   );
 }
-
-// const getVisibleContacts = (allContacts, filter) => {
-//   const normalizedFilter = filter.toLowerCase();
-
-//   return allContacts.filter(({ name }) =>
-//     name.toLowerCase().includes(normalizedFilter),
-//   );
-// };
-
-// const mapStateToProps = ({ contacts: { items, filter } }) => ({
-//   contacts: getVisibleContacts(items, filter),
-// });
-
-// const mapDispatchToProps = dispatch => ({
-//   onDeleteContact: id => dispatch(phonebookActions.deleteContact(id)),
-// });
-
-// export default connect(mapStateToProps, mapDispatchToProps)(ContactList);

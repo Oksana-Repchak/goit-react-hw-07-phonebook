@@ -1,8 +1,7 @@
 import { useState } from 'react';
-// import { connect } from 'react-redux';
 import { useSelector, useDispatch } from 'react-redux';
 import { getContacts } from '../../redux/phonebook-selectors';
-import * as phonebookActions from '../../redux/phonebook-actions';
+import * as phonebookOperations from '../../redux/phonebook-operations';
 import s from './ContactForm.module.css';
 
 export default function ContactForm() {
@@ -10,7 +9,7 @@ export default function ContactForm() {
   const dispatch = useDispatch();
 
   const onSubmit = (name, number) =>
-    dispatch(phonebookActions.addContact(name, number));
+    dispatch(phonebookOperations.addContact(name, number));
 
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
@@ -74,14 +73,3 @@ export default function ContactForm() {
     </form>
   );
 }
-
-// const mapStateToProps = state => ({
-//   contacts: state.contacts.items,
-// });
-
-// const mapDispatchToProps = dispatch => ({
-//   onSubmit: (name, number) =>
-//     dispatch(phonebookActions.addContact(name, number)),
-// });
-
-// export default connect(mapStateToProps, mapDispatchToProps)(MyForm);
